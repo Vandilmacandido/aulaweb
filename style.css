@@ -191,7 +191,7 @@ body > h2 {
     line-height: 1.8;
 }
 
-#sobre img[src="/asert/instagram-png.png"] {
+#sobre img[src="instagram-png.png"] {
     width: 40px;
     height: 40px;
     margin: 2rem auto 1rem;
@@ -535,9 +535,9 @@ footer p {
         margin: 1.5rem auto;
     }
 
-    #sobre img[src="instagram-png.png"] {
-        width: 35px;
-        height: 35px;
+    #sobre img[src="instagram-png.png"]{
+        width: 20px;
+        height: 20px;
         margin: 1.5rem auto 0.8rem;
     }
 
