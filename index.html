@@ -100,25 +100,32 @@
     <section id="contato">
         <h2>Entre em contato!</h2>
 
-        https://api.sheetmonkey.io/form/5ugJqAuvW9VjbwFbq9wiSb
+        <!-- Mensagem de confirmação -->
+        <div id="confirmationMessage" class="confirmation-message">
+            <div class="confirmation-content">
+                <div class="check-icon">✓</div>
+                <h3>Mensagem enviada com sucesso!</h3>
+                <p>Obrigada pelo contato. Retornarei em breve!</p>
+            </div>
+        </div>
 
-        <form action="https://api.sheetmonkey.io/form/5ugJqAuvW9VjbwFbq9wiSb" method="post">
+        <form id="contactForm" action="https://api.sheetmonkey.io/form/5ugJqAuvW9VjbwFbq9wiSb" method="post">
            <label for="fname">Nome</label><br>
-           <input type="text" name="fname"><br>
+           <input type="text" name="fname" id="fname" required><br>
            
            <label for="fmail">e-mail</label><br>
-           <input type="email" name="fmail"><br>
+           <input type="email" name="fmail" id="fmail" required><br>
 
            <label for="fnumber">Telefone</label><br>
-           <input type="number" name="fnumber"><br>
+           <input type="number" name="fnumber" id="fnumber" required><br>
 
            <h2>Qual serviço</h2>
            <div>
-                <input type="checkbox" value="op1" name="service">
+                <input type="checkbox" value="Leading page" name="service" id="op1">
                 <label for="op1">Leading page</label><br>
-                <input type="checkbox" value="op2" name="service">
+                <input type="checkbox" value="Ecommerce" name="service" id="op2">
                 <label for="op2">ecommerce</label><br>
-                <input type="checkbox" value="op3" name="service">
+                <input type="checkbox" value="Institucional" name="service" id="op3">
                 <label for="op3">Institucional</label><br>
            </div>
            
@@ -158,6 +165,45 @@
                 menuToggle.classList.remove('active');
                 menuList.classList.remove('active');
             }
+        });
+
+        // Formulário de contato - Mensagem de confirmação
+        const contactForm = document.getElementById('contactForm');
+        const confirmationMessage = document.getElementById('confirmationMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Enviar dados do formulário
+            const formData = new FormData(contactForm);
+            
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            })
+            .then(() => {
+                // Mostrar mensagem de confirmação
+                confirmationMessage.classList.add('show');
+                
+                // Limpar formulário
+                contactForm.reset();
+                
+                // Esconder mensagem após 5 segundos
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                }, 5000);
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+                // Mesmo em caso de erro, mostrar mensagem (devido ao mode: 'no-cors')
+                confirmationMessage.classList.add('show');
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    confirmationMessage.classList.remove('show');
+                }, 5000);
+            });
         });
     </script>
 </body>

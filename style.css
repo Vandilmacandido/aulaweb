@@ -264,7 +264,113 @@ body > h2 {
     font-size: 1.2rem;
 }
 
+/* Mensagem de Confirmação */
+.confirmation-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 90%;
+    width: 450px;
+}
+
+.confirmation-message.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.confirmation-content {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    color: white;
+}
+
+.check-icon {
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    color: #667eea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0 auto 1.5rem;
+    animation: scaleIn 0.5s ease-out 0.2s both;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.confirmation-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    animation: slideUp 0.5s ease-out 0.4s both;
+}
+
+.confirmation-content p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    line-height: 1.6;
+    animation: slideUp 0.5s ease-out 0.5s both;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0) rotate(-180deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Overlay para mensagem de confirmação */
+.confirmation-message.show::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 /* Contato - Formulário */
+#contato {
+    position: relative;
+}
+
 #contato form {
     max-width: 600px;
     margin: 2rem auto;
@@ -469,6 +575,29 @@ footer p {
         padding: 0.8rem 2rem;
     }
 
+    .confirmation-message {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .confirmation-content {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .check-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+    }
+
+    .confirmation-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .confirmation-content p {
+        font-size: 1rem;
+    }
+
     footer {
         padding: 1.5rem 1rem;
     }
@@ -593,6 +722,31 @@ footer p {
     #contato button {
         padding: 0.8rem 1.5rem;
         font-size: 1rem;
+    }
+
+    .confirmation-message {
+        width: 95%;
+        max-width: 350px;
+    }
+
+    .confirmation-content {
+        padding: 2rem 1rem;
+    }
+
+    .check-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .confirmation-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .confirmation-content p {
+        font-size: 0.95rem;
     }
 
     footer {
